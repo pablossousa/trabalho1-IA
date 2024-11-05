@@ -4,9 +4,14 @@
 
 ## Implementação
 
+### BFS
+
+### DFS
+
 ## Medições de Desempenho
 
+### BFS
+
+### DFS
+
 ## Análise de Resultado
-
-## Relatório
-
