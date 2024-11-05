@@ -1,1 +1,1 @@
-# trabalho1-IA
+# Trabalho 1 - Inteligência Artificial
