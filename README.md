@@ -2,13 +2,13 @@
 
 Participantes: Matheus Alves e Pablo Sousa
 
-## Contextualização
+## 📚 Contextualização
 
 O trabalho apresentado tem como objetivo implementar e comparar o desempenho de dois algoritmos de busca não informada aplicados ao problema clássico de labirinto. A atividade visa avaliar aspectos de desempenho como tempo de execução, consumo de memória, completude e optimalidade dos algoritmos escolhidos. A partir desses resultados, busca-se analisar e discutir por que determinados algoritmos apresentam vantagens em certas métricas e condições do problema, oferecendo uma compreensão mais profunda das técnicas de busca na área de Inteligência Artificial.
 
 ---
 
-## 1. Implementação
+## 🧑‍💻 1. Implementação
 
 Para resolver o problema de busca por um caminho em uma matriz com movimentos de salto de duas casas, foram implementados os algoritmos de **Busca em Largura (BFS)** e **Busca em Profundidade (DFS)**. Cada célula da matriz representa um nó, e os movimentos possíveis (esquerda, direita, cima, baixo) com salto de duas casas representam as arestas. Abaixo uma breve descrição de cada algoritmo:
 
@@ -18,7 +18,7 @@ Para resolver o problema de busca por um caminho em uma matriz com movimentos de
 
 ---
 
-## 2. Medições de Desempenho
+## 📊 2. Medições de Desempenho
 
 Para avaliar os algoritmos, foram medidas as seguintes métricas:
 - **Tempo de Execução**: Eficiência do algoritmo em termos de velocidade.
@@ -42,7 +42,7 @@ Para avaliar os algoritmos, foram medidas as seguintes métricas:
 
 ---
 
-## 3. Resultados e Análise Comparativa
+## 📈 3. Resultados e Análise Comparativa
 
 | Métrica             | BFS                   | DFS                    |
 |---------------------|-----------------------|------------------------|
@@ -78,7 +78,7 @@ Para avaliar os algoritmos, foram medidas as seguintes métricas:
 
 ---
 
-## 4. Conclusão e Sugestões de Melhorias
+## 💻 4. Conclusão e Sugestões de Melhorias
 
 Ambos os algoritmos foram eficazes, mas apresentaram vantagens e desvantagens específicas:
 
