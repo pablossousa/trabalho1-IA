@@ -14,8 +14,8 @@ matriz = [
     ['U', 0, 'V', 0, 'X', 0, 'Y', 0, 'Z']
 ]
 
-start = (8, 0)
-end = (0, 8)
+inicio = (8, 0)
+fim = (0, 8)
 movimentos = [(-2, 0), (2, 0), (0, -2), (0, 2)]
 
 def movimento_valido(x, y, dx, dy):
@@ -24,22 +24,21 @@ def movimento_valido(x, y, dx, dy):
 
     if 0 <= inter_x < len(matriz) and 0 <= inter_y < len(matriz[0]) and \
        0 <= dest_x < len(matriz) and 0 <= dest_y < len(matriz[0]):
-        
         if matriz[inter_x][inter_y] != 1 and matriz[dest_x][dest_y] != 1:
             return True
     return False
 
-def busca_bfs(matriz, start, end):
+def busca_bfs(matriz, inicio, fim):
     inicio_tempo = time.time()
     tracemalloc.start()
 
-    fila = deque([(start, [start])])
-    visitados = set([start])
+    fila = deque([(inicio, [inicio])])
+    visitados = set([inicio])
 
     while fila:
         (x, y), caminho = fila.popleft()
         
-        if (x, y) == end:
+        if (x, y) == fim:
             tempo_execucao = time.time() - inicio_tempo
             memoria_usada, _ = tracemalloc.get_traced_memory()
             tracemalloc.stop()
@@ -62,4 +61,4 @@ def busca_bfs(matriz, start, end):
     print("Nenhum caminho encontrado entre os pontos.")
     print("O algoritmo é completo, mas não existe caminho disponível entre os pontos.")
 
-busca_bfs(matriz, start, end)
+busca_bfs(matriz, inicio, fim)
