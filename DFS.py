@@ -2,7 +2,6 @@ from collections import deque
 import time
 import tracemalloc
 
-
 matriz = [
     ['A', 0, 'B', 1, 'C', 0, 'D', 0, 'E'],
     [0, 0, 1, 0, 0, 0, 1, 0, 0],
@@ -15,69 +14,56 @@ matriz = [
     ['U', 0, 'V', 0, 'X', 0, 'Y', 0, 'Z']
 ]
 
-
-start = (8, 0)
-end = (0, 8) 
-
-
+inicio = (8, 0)
+fim = (0, 8)
 movimentos = [(-2, 0), (2, 0), (0, -2), (0, 2)]
 
-
-def movimento_valido(x, y, dx, dy):
-    inter_x, inter_y = x + dx // 2, y + dy // 2
-    dest_x, dest_y = x + dx, y + dy
-    
-    if 0 <= inter_x < len(matriz) and 0 <= inter_y < len(matriz[0]) and \
-       0 <= dest_x < len(matriz) and 0 <= dest_y < len(matriz[0]):
-        
-        if matriz[inter_x][inter_y] != 1 and matriz[dest_x][dest_y] != 1:
+def movimento_possivel(x, y, dx, dy):
+    meio_x, meio_y = x + dx // 2, y + dy // 2
+    destino_x, destino_y = x + dx, y + dy
+    if 0 <= meio_x < len(matriz) and 0 <= meio_y < len(matriz[0]) and \
+       0 <= destino_x < len(matriz) and 0 <= destino_y < len(matriz[0]):
+        if matriz[meio_x][meio_y] != 1 and matriz[destino_x][destino_y] != 1:
             return True
     return False
 
-
-def dfs(matriz, pos, end, visitado, caminho):
-    x, y = pos
-    if pos == end:
+def busca_profundidade(matriz, posicao, fim, visitados, caminho):
+    x, y = posicao
+    if posicao == fim:
         return caminho
     
-    visitado.add(pos)
+    visitados.add(posicao)
     for dx, dy in movimentos:
-        nx, ny = x + dx, y + dy
-        if movimento_valido(x, y, dx, dy) and (nx, ny) not in visitado:
-            resultado = dfs(matriz, (nx, ny), end, visitado, caminho + [(nx, ny)])
+        novo_x, novo_y = x + dx, y + dy
+        if movimento_possivel(x, y, dx, dy) and (novo_x, novo_y) not in visitados:
+            resultado = busca_profundidade(matriz, (novo_x, novo_y), fim, visitados, caminho + [(novo_x, novo_y)])
             if resultado: 
                 return resultado
 
-    visitado.remove(pos)
+    visitados.remove(posicao)
     return None 
 
-
-def executar_dfs(matriz, start, end):
-    
-    start_time = time.time()
+def executar_busca_profundidade(matriz, inicio, fim):
+    inicio_tempo = time.time()
     tracemalloc.start()
-
   
-    caminho = dfs(matriz, start, end, set(), [start])
-
+    caminho = busca_profundidade(matriz, inicio, fim, set(), [inicio])
     
     memoria_usada, _ = tracemalloc.get_traced_memory()
-    tempo_execucao = time.time() - start_time
+    tempo_execucao = time.time() - inicio_tempo
     tracemalloc.stop()
-
 
     if caminho:
         print("Caminho encontrado:")
-        for pos in caminho:
-            print(pos)
+        for passo in caminho:
+            print(passo)
         print("\nMétricas de desempenho:")
         print(f"Tempo de Execução: {tempo_execucao:.6f} segundos")
         print(f"Consumo de Memória: {memoria_usada / 1024:.2f} KB")
-        print("Completude: O algoritmo é completo (se existir caminho, ele encontrará)")
-        print("Optimalidade: DFS não garante a melhor solução (menor caminho)")
+        print("Completude: Algoritmo completo se existir caminho")
+        print("Optimalidade: DFS não garante o menor caminho")
     else:
-        print("Nenhum caminho encontrado de U até E.")
-        print("\nCompletude: O algoritmo é completo, mas nenhum caminho existe entre U e E.")
+        print("Nenhum caminho encontrado entre os pontos.")
+        print("Completude: Algoritmo completo, mas nenhum caminho existe entre os pontos.")
 
-
-executar_dfs(matriz, start, end)
+executar_busca_profundidade(matriz, inicio, fim)
